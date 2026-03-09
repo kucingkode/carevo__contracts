@@ -1,0 +1,7 @@
+src
+openapi
+node_modules
+generated
+.github
+*.config.ts
+tsconfig.json
