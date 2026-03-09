@@ -37,7 +37,7 @@
     "typescript": "^5.9.2"
   },
   "dependencies": {
-    "zod": "^4.3.6",
-    "axios": "^1.13.6"
+    "axios": "^1.13.6",
+    "zod": "^4.3.6"
   }
 }
