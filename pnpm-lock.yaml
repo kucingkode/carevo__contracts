@@ -7,13 +7,17 @@ settings:
 importers:
 
   .:
+    dependencies:
+      axios:
+        specifier: ^1.13.6
+        version: 1.13.6
+      zod:
+        specifier: ^4.3.6
+        version: 4.3.6
     devDependencies:
       '@types/node':
         specifier: ^25.3.3
         version: 25.3.5
-      axios:
-        specifier: ^1.13.6
-        version: 1.13.6
       orval:
         specifier: ^8.5.1
         version: 8.5.3(typescript@5.9.3)

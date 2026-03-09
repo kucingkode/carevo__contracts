@@ -4,6 +4,7 @@ export default defineConfig([
   {
     entry: "./generated/api/index.ts",
     outDir: "./dist/api",
+    format: ["cjs", "esm"],
     dts: true,
     external: ["axios", "zod"],
   },
@@ -11,6 +12,7 @@ export default defineConfig([
     entry: "./generated/zod/index.ts",
     outDir: "./dist/zod",
     dts: true,
+    format: ["cjs", "esm"],
     external: ["axios", "zod"],
   },
 ]);

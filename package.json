@@ -1,29 +1,43 @@
 {
   "name": "@carevo/contracts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "license": "ISC",
-  "author": "",
-  "type": "module",
+  "author": "kucingkode",
   "scripts": {
     "build": "tsdown",
     "generate": "orval -c ./orval.config.ts"
   },
   "exports": {
     "./api": {
-      "import": "./dist/api/index.mjs",
-      "types": "./dist/api/index.d.ts"
+      "types": {
+        "require": "./dist/api/index.d.cts",
+        "default": "./dist/api/index.d.mts"
+      },
+      "default": {
+        "require": "./dist/api/index.cjs",
+        "default": "./dist/api/index.mjs"
+      }
     },
     "./zod": {
-      "import": "./dist/zod/index.mjs",
-      "types": "./dist/zod/index.d.ts"
+      "types": {
+        "require": "./dist/zod/index.d.cts",
+        "default": "./dist/zod/index.d.mts"
+      },
+      "default": {
+        "require": "./dist/zod/index.cjs",
+        "default": "./dist/zod/index.mjs"
+      }
     }
   },
   "devDependencies": {
     "@types/node": "^25.3.3",
-    "axios": "^1.13.6",
     "orval": "^8.5.1",
     "tsdown": "^0.20.3",
     "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "zod": "^4.3.6",
+    "axios": "^1.13.6"
   }
 }
