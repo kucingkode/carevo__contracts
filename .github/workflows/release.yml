@@ -35,28 +35,10 @@ jobs:
       - name: Push dist to release branch
         run: |
           git config user.email "ci@github.com"
-          git config user.name "GitHub Actions"
-
-          # Save dist to a temp location outside the repo
-          cp -r dist/ /tmp/dist-output
-
-          # Switch to release branch (create if doesn't exist)
+          git config user.name "Github Actions"
+          git add dist/ --force
+          git stash
           git checkout -B release
-
-          # Remove everything except .git
-          git rm -rf .
-
-          # Copy dist back
-          cp -r /tmp/dist-output/* .
-
-          # Copy package.json (npm needs it)
-          git checkout ${{ github.ref_name }} -- package.json
-
-          # Commit and push
-          git add .
+          git stash pop
           git commit -m "Release ${{ github.ref_name }}"
           git push origin release --force
-
-          # Move tag to this built commit
-          git tag -f ${{ github.ref_name }}
-          git push origin ${{ github.ref_name }} --force
