@@ -3,9 +3,6 @@ post:
   operationId: authLogin
   summary: Login using email and password
 
-  parameters:
-    - $ref: "../../../components/parameters.yaml#/UserAgent"
-
   requestBody:
     required: true
     content:

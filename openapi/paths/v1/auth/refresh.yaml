@@ -7,7 +7,6 @@ post:
     - bearerAuth: []
 
   parameters:
-    - $ref: "../../../components/parameters.yaml#/UserAgent"
     - $ref: "../../../components/parameters.yaml#/RefreshCookie"
 
   responses:

@@ -3,9 +3,6 @@ post:
   operationId: authRegister
   summary: Register a new user using email and password
 
-  parameters:
-    - $ref: "../../../components/parameters.yaml#/UserAgent"
-
   requestBody:
     required: true
     content:

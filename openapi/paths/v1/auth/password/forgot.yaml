@@ -6,9 +6,6 @@ post:
     Send reset password token to the user's email address.
     Previous token will be invalidated and a new one will be issued.
 
-  parameters:
-    - $ref: "../../../../components/parameters.yaml#/UserAgent"
-
   requestBody:
     required: true
     content:

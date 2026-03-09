@@ -3,9 +3,6 @@ post:
   operationId: authEmailVerify
   summary: Verify user email address
 
-  parameters:
-    - $ref: "../../../../components/parameters.yaml#/UserAgent"
-
   requestBody:
     required: true
     content:

@@ -6,9 +6,6 @@ post:
   security:
     - bearerAuth: []
 
-  parameters:
-    - $ref: "../../../../components/parameters.yaml#/UserAgent"
-
   requestBody:
     required: true
     content:
