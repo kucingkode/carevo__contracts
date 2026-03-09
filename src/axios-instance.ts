@@ -1,7 +1,8 @@
-import axios, {
-  type AxiosInstance,
-  type AxiosRequestConfig,
-  type InternalAxiosRequestConfig,
+import axios from "axios";
+import type {
+  AxiosInstance,
+  AxiosRequestConfig,
+  InternalAxiosRequestConfig,
 } from "axios";
 import { authRefresh } from "../generated/api/index";
 
