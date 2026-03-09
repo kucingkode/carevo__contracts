@@ -33,7 +33,7 @@ jobs:
         run: npm install -g @redocly/cli
 
       - name: Generate docs
-        run: redocly build-docs -o index.html ./openapi/openapi.yaml
+        run: redocly build-docs -o docs/index.html ./openapi/openapi.yaml
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -41,7 +41,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./index.html"
+          path: "./docs"
 
       - name: Deploy to GitHub Pages
         id: deployment
