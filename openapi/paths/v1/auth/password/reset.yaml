@@ -1,0 +1,78 @@
+post:
+  tags: [Auth]
+  operationId: authPasswordReset
+  summary: Reset user password using token
+
+  security:
+    - bearerAuth: []
+
+  parameters:
+    - $ref: "../../../../components/parameters.yaml#/UserAgent"
+    - $ref: "../../../../components/parameters.yaml#/RefreshCookie"
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required: [oldPassword, newPassword]
+          properties:
+            oldPassword:
+              type: string
+              example: WeakPassword123
+            newPassword:
+              type: string
+              minLength: 8
+              example: StrongPassword123
+
+  responses:
+    "200":
+      description: Password reset successful
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [message]
+            properties:
+              message:
+                type: string
+                example: Password reset successful
+
+    "401":
+      description: Unauthorized
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../../../../components/schemas/ErrorResponse.yaml"
+              - properties:
+                  error:
+                    enum: [UNAUTHORIZED]
+                    example: UNAUTHORIZED
+
+    "429":
+      description: Too many attempts
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../components/schemas/RateLimitErrorResponse.yaml"
+
+    "500":
+      description: Internal server error
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../components/schemas/RateLimitErrorResponse.yaml"

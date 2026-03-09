@@ -1,0 +1,99 @@
+post:
+  tags: [Auth]
+  operationId: authEmailVerify
+  summary: Verify user email address
+
+  parameters:
+    - $ref: "../../../../components/parameters.yaml#/UserAgent"
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required: [token]
+          properties:
+            token:
+              type: string
+              example: eyJhbGciOiJIUzI1NiJ9...
+
+  responses:
+    "200":
+      description: Email verified successfully
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [message]
+            properties:
+              message:
+                type: string
+                example: Email verified successful
+
+    "400":
+      description: Validation error
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../components/schemas/ValidationErrorResponse.yaml"
+
+    "401":
+      description: Token is invalid of expired
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../../../../components/schemas/ErrorResponse.yaml"
+              - properties:
+                  error:
+                    enum: [INVALID_TOKEN, EXPIRED_TOKEN]
+                    example: INVALID_TOKEN
+                  message:
+                    example: Verification token is invalid or has expired
+
+    "409":
+      description: Email already verified
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../../../../components/schemas/ErrorResponse.yaml"
+              - properties:
+                  error:
+                    enum: [EMAIL_ALREADY_VERIFIED]
+                    example: EMAIL_ALREADY_VERIFIED
+                  message:
+                    example: Email is already verified
+
+    "429":
+      description: Too many attempts
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../components/schemas/RateLimitErrorResponse.yaml"
+
+    "500":
+      description: Internal server error
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../components/schemas/RateLimitErrorResponse.yaml"

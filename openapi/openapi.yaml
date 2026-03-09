@@ -1,0 +1,112 @@
+# yaml-language-server: $schema=https://spec.openapis.org/oas/3.1/schema/2025-09-15
+openapi: 3.1.0
+info:
+  title: Carevo API
+  version: 0.1.0
+
+servers:
+  - url: https://localhost:8080/api
+    description: Production
+
+tags:
+  - name: Auth
+  - name: Profto
+  - name: CV
+  - name: Asah
+  - name: Community
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+    csrfHeader:
+      name: X-CSRF-Token
+      type: apiKey
+      in: header
+
+paths:
+  # Auth
+  /v1/auth/register:
+    $ref: ./paths/v1/auth/register.yaml
+  /v1/auth/login:
+    $ref: ./paths/v1/auth/login.yaml
+  /v1/auth/logout:
+    $ref: ./paths/v1/auth/logout.yaml
+  /v1/auth/refresh:
+    $ref: ./paths/v1/auth/refresh.yaml
+
+  /v1/auth/password/forgot:
+    $ref: ./paths/v1/auth/password/forgot.yaml
+  /v1/auth/password/reset:
+    $ref: ./paths/v1/auth/password/reset.yaml
+  /v1/auth/password/change:
+    $ref: ./paths/v1/auth/password/change.yaml
+
+  /v1/auth/email/verify:
+    $ref: ./paths/v1/auth/email/verify.yaml
+  /v1/auth/email/resend:
+    $ref: ./paths/v1/auth/email/resend.yaml
+
+  /v1/auth/oauth/google:
+    $ref: ./paths/v1/auth/oauth/google/index.yaml
+  /v1/auth/oauth/google/callback:
+    $ref: ./paths/v1/auth/oauth/google/callback.yaml
+
+  # # Profto
+  # /v1/profto:
+  #   $ref: ./paths/v1/profto.yaml
+  # /v1/profto/{username}:
+  #   $ref: ./paths/v1/profto/{username}.yaml
+
+  # # CV
+  # /v1/cv:
+  #   $ref: ./paths/v1/cv.yaml
+
+  # /v1/cv/{username}:
+  #   $ref: ./paths/v1/cv/{username}.yaml
+
+  # /v1/ai/cv/generate:
+  #   $ref: ./paths/v1/cv/generate.yaml
+
+  # # Bootcamps
+  # /v1/bootcamps:
+  #   $ref: ./paths/v1/bootcamps.yaml
+
+  # /v1/feeds/bootcamps:
+  #   $ref: ./paths/v1/feeds/bootcamps.yaml
+
+  # # Certifications
+  # /v1/certifications:
+  #   $ref: ./paths/v1/certifications.yaml
+
+  # /v1/feeds/certifications:
+  #   $ref: ./paths/v1/feeds/certifications.yaml
+
+  # # Communities
+  # /v1/communities:
+  #   $ref: ./paths/v1/communities.yaml
+
+  # /v1/feeds/communities:
+  #   $ref: ./paths/v1/feeds/communities.yaml
+
+  # /v1/communities/{communityName}:
+  #   $ref: ./paths/v1/communities/{communityName}.yaml
+
+  # /v1/communities/{communityName}/members:
+  #   $ref: ./paths/v1/communities/{communityName}/members.yaml
+
+  # # Posts
+  # /v1/posts:
+  #   $ref: ./paths/v1/posts.yaml
+
+  # /v1/feeds/posts:
+  #   $ref: ./paths/v1/feeds/posts.yaml
+
+  # /v1/posts/{postId}/likes:
+  #   $ref: ./paths/v1/posts/{postId}/likes.yaml
+
+  # /v1/posts/{postId}/comments:
+  #   $ref: ./paths/v1/posts/{postId}/comments.yaml

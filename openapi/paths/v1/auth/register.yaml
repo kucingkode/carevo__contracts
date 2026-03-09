@@ -1,0 +1,92 @@
+post:
+  tags: [Auth]
+  operationId: authRegister
+  summary: Register a new user using email and password
+
+  parameters:
+    - $ref: "../../../components/parameters.yaml#/UserAgent"
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required: [username, email, password]
+          properties:
+            username:
+              type: string
+              minLength: 3
+              maxLength: 30
+              pattern: "^[a-zA-Z0-9_-]{3,30}$"
+              example: john_doe
+            email:
+              type: string
+              format: email
+              example: user@example.com
+            password:
+              type: string
+              minLength: 8
+              example: StrongPassword123
+  responses:
+    "201":
+      description: User registered successfully
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [message]
+            properties:
+              message:
+                type: string
+                example: Registration successful, please verify your email
+
+    "400":
+      description: Validation error
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../components/schemas/ValidationErrorResponse.yaml"
+
+    "409":
+      description: Username or email already registered
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../../../components/schemas/ErrorResponse.yaml"
+              - properties:
+                  error:
+                    enum: [EMAIL_REGISTERED, USERNAME_TAKEN]
+                    example: EMAIL_REGISTERED
+                  message:
+                    example: Email is already taken
+
+    "429":
+      description: Too many attempts
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../components/schemas/RateLimitErrorResponse.yaml"
+
+    "500":
+      description: Internal server error
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../components/schemas/RateLimitErrorResponse.yaml"

@@ -1,0 +1,6 @@
+allOf:
+  - $ref: "./ErrorResponse.yaml"
+  - properties:
+      error:
+        enum: [INTERNAL_ERROR]
+        example: INTERNAL_ERROR

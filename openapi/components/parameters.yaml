@@ -1,0 +1,34 @@
+CsrfCookie:
+  name: csrf_token
+  in: cookie
+  required: true
+  schema:
+    type: string
+    minLength: 32
+  description: Protection from CSRF attack
+
+RequestId:
+  name: x-reuest-id
+  in: header
+  required: false
+  schema:
+    type: string
+  description: Request identity for logs and tracing
+
+RefreshCookie:
+  name: refresh_token
+  in: cookie
+  required: true
+  schema:
+    type: string
+    minLength: 32
+    example: eyJhbGciOiJIUzI1NiJ9...
+  description: JWT refresh token
+
+UserAgent:
+  name: User-Agent
+  in: header
+  required: false
+  schema:
+    type: string
+    maxLength: 512

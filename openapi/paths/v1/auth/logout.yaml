@@ -1,0 +1,64 @@
+post:
+  tags: [Auth]
+  operationId: authLogout
+  summary: Revoke user refresh token to end user session
+
+  security:
+    - bearerAuth: []
+
+  parameters:
+    - $ref: "../../../components/parameters.yaml#/UserAgent"
+    - $ref: "../../../components/parameters.yaml#/RefreshCookie"
+
+  responses:
+    "200":
+      description: User logged out successfully
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+        Set-Cookie:
+          $ref: "../../../components/headers.yaml#/DeleteRefreshCookie"
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [message]
+            properties:
+              message:
+                type: string
+                example: Logout successful
+
+    "401":
+      description: Unauthorized
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../../../components/schemas/ErrorResponse.yaml"
+              - properties:
+                  error:
+                    enum: [UNAUTHORIZED]
+                    example: UNAUTHORIZED
+
+    "429":
+      description: Too many attempts
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../components/schemas/RateLimitErrorResponse.yaml"
+
+    "500":
+      description: Internal server error
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../components/schemas/RateLimitErrorResponse.yaml"

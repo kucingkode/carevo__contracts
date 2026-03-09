@@ -1,0 +1,64 @@
+post:
+  tags: [Auth]
+  operationId: authRefresh
+  summary: Refresh access token using refresh token
+
+  security:
+    - bearerAuth: []
+
+  parameters:
+    - $ref: "../../../components/parameters.yaml#/UserAgent"
+    - $ref: "../../../components/parameters.yaml#/RefreshCookie"
+
+  responses:
+    "200":
+      description: Access token refreshed successfully
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+        Set-Cookie:
+          $ref: "../../../components/headers.yaml#/RefreshCookie"
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [accessToken]
+            properties:
+              accessToken:
+                type: string
+                example: eyJhbGciOiJIUzI1NiJ9...
+
+    "401":
+      description: Unauthorized
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../../../components/schemas/ErrorResponse.yaml"
+              - properties:
+                  error:
+                    enum: [UNAUTHORIZED]
+                    example: UNAUTHORIZED
+
+    "429":
+      description: Too many attempts
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../components/schemas/RateLimitErrorResponse.yaml"
+
+    "500":
+      description: Internal server error
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../components/schemas/RateLimitErrorResponse.yaml"

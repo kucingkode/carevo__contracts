@@ -1,0 +1,16 @@
+get:
+  tags: [Auth]
+  operationId: authOauthGoogleCallback
+  summary: Handle Google OAuth callback
+  description: Called by Google after user consents. Not intended to be called directly.
+  security: []
+  responses:
+    "302":
+      description: Redirect to frontend with session established
+      headers:
+        Location:
+          schema:
+            type: string
+            example: https://carevo.com/dashboard#eyJhbGciOiJIUzI1NiJ9...
+        Set-Cookie:
+          $ref: "../../../../../components/headers.yaml#/RefreshCookie"

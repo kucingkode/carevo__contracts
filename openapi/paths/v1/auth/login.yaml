@@ -1,0 +1,109 @@
+post:
+  tags: [Auth]
+  operationId: authLogin
+  summary: Login using email and password
+
+  parameters:
+    - $ref: "../../../components/parameters.yaml#/UserAgent"
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required: [email, password]
+          properties:
+            email:
+              type: string
+              format: email
+              example: user@example.com
+            password:
+              type: string
+              minLength: 8
+              example: StrongPassword123
+
+  responses:
+    "200":
+      description: User logged in successfully
+      headers:
+        Set-Cookie:
+          $ref: "../../../components/headers.yaml#/RefreshCookie"
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [message]
+            properties:
+              message:
+                type: string
+                example: Login successful
+              accessToken:
+                type: string
+                example: eyJhbGciOiJIUzI1NiJ9...
+
+    "400":
+      description: Validation error
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../components/schemas/ValidationErrorResponse.yaml"
+
+    "401":
+      description: Wrong email or password
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../../../components/schemas/ErrorResponse.yaml"
+              - properties:
+                  error:
+                    enum: [INCORRECT_CREDENTIALS]
+                    example: INCORRECT_CREDENTIALS
+                  message:
+                    example: Invalid email or password
+
+    "403":
+      description: Email is not verified
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../../../components/schemas/ErrorResponse.yaml"
+              - properties:
+                  error:
+                    enum: [EMAIL_NOT_VERIFIED]
+                    example: EMAIL_NOT_VERIFIED
+                  message:
+                    example: Please verify your email before logging in
+
+    "429":
+      description: Too many attempts
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../components/schemas/RateLimitErrorResponse.yaml"
+
+    "500":
+      description: Internal server error
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../components/schemas/RateLimitErrorResponse.yaml"

@@ -1,0 +1,8 @@
+type: object
+required: [error, message]
+properties:
+  error:
+    type: string
+  message:
+    type: string
+    example: An unexpected error occurred

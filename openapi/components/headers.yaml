@@ -1,0 +1,20 @@
+RefreshCookie:
+  schema:
+    schema:
+      type: string
+    description: Rotated refresh token cookie
+    example: refreshToken=abc123; HttpOnly; Secure; SameSite=Strict
+
+DeleteRefreshCookie:
+  schema:
+    schema:
+      type: string
+    description: Delete refresh token cookie
+    example: refreshToken=; HttpOnly; Secure; SameSite=Strict; Max-Age=0
+
+RequestID:
+  schema:
+    schema:
+      type: string
+    description: Request identity for logs and tracing
+    example: fb209063-ad2f-4efb-a124-8dfcead7e863

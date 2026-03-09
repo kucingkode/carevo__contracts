@@ -1,0 +1,8 @@
+allOf:
+  - $ref: "./ErrorResponse.yaml"
+  - properties:
+      error:
+        enum: [RATE_LIMITED]
+        example: RATE_LIMITED
+      message:
+        example: Too many attempts, please try again later

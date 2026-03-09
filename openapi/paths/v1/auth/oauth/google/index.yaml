@@ -1,0 +1,13 @@
+get:
+  tags: [Auth]
+  operationId: authOauthGoogle
+  summary: Redirect to Google OAuth consent screen
+  security: []
+  responses:
+    "302":
+      description: Redirect to Google consent screen
+      headers:
+        Location:
+          schema:
+            type: string
+            example: https://accounts.google.com/o/oauth2/auth?...
