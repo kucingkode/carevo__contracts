@@ -17,4 +17,4 @@ RequestID:
     schema:
       type: string
     description: Request identity for logs and tracing
-    example: fb209063-ad2f-4efb-a124-8dfcead7e863
+    example: req-019cda81-ff67-713c-84f6-53ad00c46069

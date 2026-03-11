@@ -14,6 +14,7 @@ tags:
   - name: Cv
   - name: Asah
   - name: Community
+  - name: File
 
 components:
   securitySchemes:

@@ -37,31 +37,10 @@ post:
                 example: If this email is registered and verified, a new verification link will be sent
 
     "400":
-      description: Validation error
-      headers:
-        x-request-id:
-          $ref: "../../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            $ref: "../../../../components/schemas/ValidationErrorResponse.yaml"
-
+      $ref: "../../../../components/responses.yaml#/ValidationError"
+    "401":
+      $ref: "../../../../components/responses.yaml#/Unauthorized"
     "429":
-      description: Too many attempts
-      headers:
-        x-request-id:
-          $ref: "../../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            $ref: "../../../../components/schemas/RateLimitErrorResponse.yaml"
-
+      $ref: "../../../../components/responses.yaml#/RateLimit"
     "500":
-      description: Internal server error
-      headers:
-        x-request-id:
-          $ref: "../../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            $ref: "../../../../components/schemas/RateLimitErrorResponse.yaml"
+      $ref: "../../../../components/responses.yaml#/InternalServerError"

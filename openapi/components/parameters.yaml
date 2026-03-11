@@ -7,14 +7,6 @@ CsrfCookie:
     minLength: 32
   description: Protection from CSRF attack
 
-RequestId:
-  name: x-request-id
-  in: header
-  required: false
-  schema:
-    type: string
-  description: Request identity for logs and tracing
-
 RefreshCookie:
   name: refresh_token
   in: cookie

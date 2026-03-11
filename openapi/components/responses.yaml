@@ -1,0 +1,49 @@
+Unauthorized:
+  description: Unauthorized
+  headers:
+    x-request-id:
+      $ref: "./headers.yaml#/RequestID"
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas/UnauthorizedErrorResponse.yaml"
+
+Forbidden:
+  description: Forbidden
+  headers:
+    x-request-id:
+      $ref: "./headers.yaml#/RequestID"
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas/UnauthorizedErrorResponse.yaml"
+
+ValidationError:
+  description: Validation error
+  headers:
+    x-request-id:
+      $ref: "./headers.yaml#/RequestID"
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas/ValidationErrorResponse.yaml"
+
+RateLimit:
+  description: Too many attempts
+  headers:
+    x-request-id:
+      $ref: "./headers.yaml#/RequestID"
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas/RateLimitErrorResponse.yaml"
+
+InternalServerError:
+  description: Internal server error
+  headers:
+    x-request-id:
+      $ref: "./headers.yaml#/RequestID"
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas/RateLimitErrorResponse.yaml"

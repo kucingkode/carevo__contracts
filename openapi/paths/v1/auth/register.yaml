@@ -43,16 +43,6 @@ post:
                 type: string
                 example: Registration successful, please verify your email
 
-    "400":
-      description: Validation error
-      headers:
-        x-request-id:
-          $ref: "../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            $ref: "../../../components/schemas/ValidationErrorResponse.yaml"
-
     "409":
       description: Username or email already registered
       headers:
@@ -70,22 +60,9 @@ post:
                   message:
                     example: Email is already taken
 
+    "400":
+      $ref: "../../../components/responses.yaml#/ValidationError"
     "429":
-      description: Too many attempts
-      headers:
-        x-request-id:
-          $ref: "../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            $ref: "../../../components/schemas/RateLimitErrorResponse.yaml"
-
+      $ref: "../../../components/responses.yaml#/RateLimit"
     "500":
-      description: Internal server error
-      headers:
-        x-request-id:
-          $ref: "../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            $ref: "../../../components/schemas/RateLimitErrorResponse.yaml"
+      $ref: "../../../components/responses.yaml#/InternalServerError"

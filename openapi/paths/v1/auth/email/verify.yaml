@@ -33,65 +33,10 @@ post:
                 example: Email verified successful
 
     "400":
-      description: Validation error
-      headers:
-        x-request-id:
-          $ref: "../../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            $ref: "../../../../components/schemas/ValidationErrorResponse.yaml"
-
+      $ref: "../../../../components/responses.yaml#/ValidationError"
     "401":
-      description: Token is invalid of expired
-      headers:
-        x-request-id:
-          $ref: "../../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            allOf:
-              - $ref: "../../../../components/schemas/ErrorResponse.yaml"
-              - properties:
-                  error:
-                    enum: [INVALID_TOKEN, EXPIRED_TOKEN]
-                    example: INVALID_TOKEN
-                  message:
-                    example: Verification token is invalid or has expired
-
-    "409":
-      description: Email already verified
-      headers:
-        x-request-id:
-          $ref: "../../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            allOf:
-              - $ref: "../../../../components/schemas/ErrorResponse.yaml"
-              - properties:
-                  error:
-                    enum: [EMAIL_ALREADY_VERIFIED]
-                    example: EMAIL_ALREADY_VERIFIED
-                  message:
-                    example: Email is already verified
-
+      $ref: "../../../../components/responses.yaml#/Unauthorized"
     "429":
-      description: Too many attempts
-      headers:
-        x-request-id:
-          $ref: "../../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            $ref: "../../../../components/schemas/RateLimitErrorResponse.yaml"
-
+      $ref: "../../../../components/responses.yaml#/RateLimit"
     "500":
-      description: Internal server error
-      headers:
-        x-request-id:
-          $ref: "../../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            $ref: "../../../../components/schemas/RateLimitErrorResponse.yaml"
+      $ref: "../../../../components/responses.yaml#/InternalServerError"

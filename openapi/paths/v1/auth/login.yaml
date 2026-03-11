@@ -44,16 +44,6 @@ post:
                 type: string
                 example: eyJhbGciOiJIUzI1NiJ9...
 
-    "400":
-      description: Validation error
-      headers:
-        x-request-id:
-          $ref: "../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            $ref: "../../../components/schemas/ValidationErrorResponse.yaml"
-
     "401":
       description: Wrong email or password
       headers:
@@ -88,22 +78,9 @@ post:
                   message:
                     example: Please verify your email before logging in
 
+    "400":
+      $ref: "../../../components/responses.yaml#/ValidationError"
     "429":
-      description: Too many attempts
-      headers:
-        x-request-id:
-          $ref: "../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            $ref: "../../../components/schemas/RateLimitErrorResponse.yaml"
-
+      $ref: "../../../components/responses.yaml#/RateLimit"
     "500":
-      description: Internal server error
-      headers:
-        x-request-id:
-          $ref: "../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            $ref: "../../../components/schemas/RateLimitErrorResponse.yaml"
+      $ref: "../../../components/responses.yaml#/InternalServerError"
