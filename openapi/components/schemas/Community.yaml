@@ -1,0 +1,25 @@
+type: object
+required:
+  - id
+  - name
+  - totalMembers
+  - avatarFileId
+  - description
+properties:
+  id:
+    type: string
+    format: uuid
+    example: 019cda81-ff67-713c-84f6-53ad00c46069
+  name:
+    type: string
+    maxLength: 255
+  totalMembers:
+    type: integer
+    min: 0
+  avatarFileId:
+    type: string
+    format: uuid
+    example: 019cda81-ff67-713c-84f6-53ad00c46069
+  description:
+    type: string
+    maxLength: 2000

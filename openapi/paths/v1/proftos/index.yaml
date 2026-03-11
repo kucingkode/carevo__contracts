@@ -1,0 +1,7 @@
+get:
+  tags: [Profto]
+  operationId: listProftos
+
+patch:
+  tags: [Profto]
+  operationId: updateProfto

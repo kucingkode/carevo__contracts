@@ -1,0 +1,17 @@
+type: object
+properties:
+  userId:
+    type: string
+    format: uuid
+    example: 019cda81-ff67-713c-84f6-53ad00c46069
+  postId:
+    type: string
+    format: uuid
+    example: 019cda81-ff67-713c-84f6-53ad00c46069
+  parentId:
+    type: string
+    format: uuid
+    example: 019cda81-ff67-713c-84f6-53ad00c46069
+  content:
+    type: string
+    maxLength: 2000

@@ -1,6 +1,19 @@
+get:
+  tags: [Community]
+  operationId: listComments
+
+  parameters:
+    - name: postId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: 019cda81-ff67-713c-84f6-53ad00c46069
+
 post:
   tags: [Community]
-  operationId: likePost
+  operationId: createComment
 
   parameters:
     - name: postId
@@ -13,7 +26,7 @@ post:
 
 delete:
   tags: [Community]
-  operationId: dislikePost
+  operationId: deleteComments
 
   parameters:
     - name: postId

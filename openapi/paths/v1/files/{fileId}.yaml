@@ -1,0 +1,12 @@
+get:
+  tags: [File]
+  operationId: getFile
+
+  parameters:
+    - name: fileId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: 019cda81-ff67-713c-84f6-53ad00c46069

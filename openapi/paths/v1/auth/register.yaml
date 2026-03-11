@@ -1,7 +1,8 @@
 post:
   tags: [Auth]
-  operationId: authRegister
-  summary: Register a new user using email and password
+  operationId: registerUser
+  summary: |
+    [registerUser] Register a new user using email and password
 
   requestBody:
     required: true
@@ -24,6 +25,7 @@ post:
             password:
               type: string
               minLength: 8
+              maxLength: 128
               example: StrongPassword123
   responses:
     "201":

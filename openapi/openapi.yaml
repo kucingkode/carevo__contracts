@@ -11,7 +11,7 @@ servers:
 tags:
   - name: Auth
   - name: Profto
-  - name: CV
+  - name: Cv
   - name: Asah
   - name: Community
 
@@ -55,58 +55,58 @@ paths:
   /v1/auth/oauth/google/callback:
     $ref: ./paths/v1/auth/oauth/google/callback.yaml
 
-  # # Profto
-  # /v1/profto:
-  #   $ref: ./paths/v1/profto.yaml
-  # /v1/profto/{username}:
-  #   $ref: ./paths/v1/profto/{username}.yaml
+  # Profto
+  /v1/proftos:
+    $ref: ./paths/v1/proftos/index.yaml
+  /v1/proftos/u/{username}:
+    $ref: ./paths/v1/proftos/u/{username}.yaml
 
   # # CV
-  # /v1/cv:
-  #   $ref: ./paths/v1/cv.yaml
+  /v1/cvs:
+    $ref: ./paths/v1/cvs/index.yaml
+  /v1/cvs/download:
+    $ref: ./paths/v1/cvs/{userId}/download.yaml
+  /v1/cvs/save:
+    $ref: ./paths/v1/cvs/save.yaml
+  /v1/cvs/ai/generate:
+    $ref: ./paths/v1/cvs/ai/generate.yaml
 
-  # /v1/cv/{username}:
-  #   $ref: ./paths/v1/cv/{username}.yaml
+  # Bootcamps
+  /v1/bootcamps:
+    $ref: ./paths/v1/bootcamps/index.yaml
+  /v1/bootcamps/feed:
+    $ref: ./paths/v1/bootcamps/feed.yaml
 
-  # /v1/ai/cv/generate:
-  #   $ref: ./paths/v1/cv/generate.yaml
+  # Certifications
+  /v1/certifications:
+    $ref: ./paths/v1/certifications/index.yaml
+  /v1/certifications/feed:
+    $ref: ./paths/v1/certifications/feed.yaml
 
-  # # Bootcamps
-  # /v1/bootcamps:
-  #   $ref: ./paths/v1/bootcamps.yaml
+  # Communities
+  /v1/communities:
+    $ref: ./paths/v1/communities/index.yaml
+  /v1/communities/join:
+    $ref: ./paths/v1/communities/join.yaml
+  /v1/communities/leave:
+    $ref: ./paths/v1/communities/leave.yaml
+  /v1/communities/feed:
+    $ref: ./paths/v1/communities/feed.yaml
 
-  # /v1/feeds/bootcamps:
-  #   $ref: ./paths/v1/feeds/bootcamps.yaml
+  # Posts
+  /v1/posts:
+    $ref: ./paths/v1/posts/index.yaml
+  /v1/posts/feed:
+    $ref: ./paths/v1/posts/feed.yaml
+  /v1/posts/{postId}/likes:
+    $ref: ./paths/v1/posts/{postId}/likes.yaml
+  /v1/posts/{postId}/comments:
+    $ref: ./paths/v1/posts/{postId}/comments/index.yaml
+  /v1/posts/{postId}/comments/{commentId}:
+    $ref: ./paths/v1/posts/{postId}/comments/{commentId}.yaml
 
-  # # Certifications
-  # /v1/certifications:
-  #   $ref: ./paths/v1/certifications.yaml
-
-  # /v1/feeds/certifications:
-  #   $ref: ./paths/v1/feeds/certifications.yaml
-
-  # # Communities
-  # /v1/communities:
-  #   $ref: ./paths/v1/communities.yaml
-
-  # /v1/feeds/communities:
-  #   $ref: ./paths/v1/feeds/communities.yaml
-
-  # /v1/communities/{communityName}:
-  #   $ref: ./paths/v1/communities/{communityName}.yaml
-
-  # /v1/communities/{communityName}/members:
-  #   $ref: ./paths/v1/communities/{communityName}/members.yaml
-
-  # # Posts
-  # /v1/posts:
-  #   $ref: ./paths/v1/posts.yaml
-
-  # /v1/feeds/posts:
-  #   $ref: ./paths/v1/feeds/posts.yaml
-
-  # /v1/posts/{postId}/likes:
-  #   $ref: ./paths/v1/posts/{postId}/likes.yaml
-
-  # /v1/posts/{postId}/comments:
-  #   $ref: ./paths/v1/posts/{postId}/comments.yaml
+  # Files
+  /v1/files/{fileId}:
+    $ref: ./paths/v1/files/{fileId}.yaml
+  /v1/files:
+    $ref: ./paths/v1/files/index.yaml

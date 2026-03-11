@@ -1,7 +1,8 @@
 post:
   tags: [Auth]
-  operationId: authLogout
-  summary: Revoke user refresh token to end user session
+  operationId: logoutUser
+  summary: |
+    [logoutUser] Logout user
 
   security:
     - bearerAuth: []

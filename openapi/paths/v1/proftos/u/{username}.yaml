@@ -1,0 +1,14 @@
+get:
+  tags: [Profto]
+  operationId: getProfto
+
+  parameters:
+    - name: username
+      in: path
+      required: true
+      schema:
+        type: string
+        minLength: 3
+        maxLength: 30
+        pattern: "^[a-zA-Z0-9_-]{3,30}$"
+        example: john_doe

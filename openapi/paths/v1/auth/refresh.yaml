@@ -1,7 +1,8 @@
 post:
   tags: [Auth]
-  operationId: authRefresh
-  summary: Refresh access token using refresh token
+  operationId: refreshToken
+  summary: |
+    [refreshToken] Refresh token
 
   security:
     - bearerAuth: []

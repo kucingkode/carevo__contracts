@@ -8,7 +8,7 @@ CsrfCookie:
   description: Protection from CSRF attack
 
 RequestId:
-  name: x-reuest-id
+  name: x-request-id
   in: header
   required: false
   schema:

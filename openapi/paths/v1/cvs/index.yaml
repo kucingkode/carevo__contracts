@@ -1,0 +1,7 @@
+get:
+  tags: [Cv]
+  operationId: getCv
+
+patch:
+  tags: [Cv]
+  operationId: updateCv

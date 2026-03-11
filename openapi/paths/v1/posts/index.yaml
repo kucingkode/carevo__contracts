@@ -1,0 +1,7 @@
+post:
+  tags: [Community]
+  operationId: createPost
+
+delete:
+  tags: [Community]
+  operationId: deletePost

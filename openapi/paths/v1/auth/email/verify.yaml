@@ -1,7 +1,8 @@
 post:
   tags: [Auth]
-  operationId: authEmailVerify
-  summary: Verify user email address
+  operationId: verifyUserEmail
+  summary: |
+    [verifyUserEmail] Verify user email address
 
   requestBody:
     required: true

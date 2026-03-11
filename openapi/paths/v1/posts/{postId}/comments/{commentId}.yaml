@@ -1,6 +1,6 @@
-post:
+delete:
   tags: [Community]
-  operationId: likePost
+  operationId: deleteComment
 
   parameters:
     - name: postId
@@ -10,13 +10,7 @@ post:
         type: string
         format: uuid
         example: 019cda81-ff67-713c-84f6-53ad00c46069
-
-delete:
-  tags: [Community]
-  operationId: dislikePost
-
-  parameters:
-    - name: postId
+    - name: commentId
       in: path
       required: true
       schema:

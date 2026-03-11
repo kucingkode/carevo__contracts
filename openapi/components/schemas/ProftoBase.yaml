@@ -1,0 +1,101 @@
+type: object
+properties:
+  avatarFileId:
+    type: [string, null]
+    format: uuid
+    example: 019cda81-ff67-713c-84f6-53ad00c46069
+  name:
+    type: [string, null]
+    format: string
+    maxLength: 255
+  professionRole:
+    type: [string, null]
+    format: string
+    maxLength: 255
+  lastEducation:
+    type: [string, null]
+    format: string
+    maxLength: 255
+  email:
+    type: [string, null]
+    format: email
+    maxLength: 255
+  phone:
+    type: [string, null]
+    pattern: ^\+[1-9]\d{1,14}$
+    example: "+62xxxxxxxxxxx"
+  summary:
+    type: [string, null]
+    format: string
+    maxLength: 2000
+  cvFileId:
+    type: [string, null]
+    format: uuid
+    example: 019cda81-ff67-713c-84f6-53ad00c46069
+  certificates:
+    type: array
+    items:
+      type: object
+      properties:
+        imageFileId:
+          type: string
+          format: uuid
+          example: 019cda81-ff67-713c-84f6-53ad00c46069
+        name:
+          type: string
+          maxLength: 255
+        publishDate:
+          type: string
+          format: date
+        publisher:
+          type: string
+          maxLength: 255
+  experiences:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        startYear:
+          type: integer
+          min: 1900
+        endYear:
+          type: integer
+          min: 1900
+        description:
+          type: string
+          maxLength: 2000
+  projects:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        professionRole:
+          type: string
+          maxLength: 255
+        imageFileId:
+          type: string
+          maxLength: 255
+        date:
+          type: string
+          format: date
+        description:
+          type: string
+          maxLength: 2000
+  links:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        link:
+          type: string
+          format: uri
+          maxLength: 255

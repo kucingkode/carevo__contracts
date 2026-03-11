@@ -1,7 +1,8 @@
 post:
   tags: [Auth]
-  operationId: authPasswordForgot
-  summary: Request password reset token
+  operationId: sendPasswordResetEmail
+  summary: |
+    [sendPasswordResetEmail] Request password reset token
   description: |
     Send reset password token to the user's email address.
     Previous token will be invalidated and a new one will be issued.

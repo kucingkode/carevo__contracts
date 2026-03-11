@@ -1,7 +1,8 @@
 post:
   tags: [Auth]
-  operationId: authLogin
-  summary: Login using email and password
+  operationId: loginUser
+  summary: |
+    [loginUser] Login using email and password
 
   requestBody:
     required: true
@@ -18,6 +19,7 @@ post:
             password:
               type: string
               minLength: 8
+              maxLength: 128
               example: StrongPassword123
 
   responses:
@@ -34,9 +36,10 @@ post:
             type: object
             required: [message]
             properties:
-              message:
+              userId:
                 type: string
-                example: Login successful
+                format: uuid
+                example: 019cda81-ff67-713c-84f6-53ad00c46069
               accessToken:
                 type: string
                 example: eyJhbGciOiJIUzI1NiJ9...

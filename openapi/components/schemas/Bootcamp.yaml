@@ -1,0 +1,45 @@
+type: object
+required:
+  - id
+  - professionRole
+  - thumbnailFileId
+  - name
+  - redirectUrl
+  - publisher
+  - startDate
+  - createdAt
+  - updatedAt
+properties:
+  id:
+    type: string
+    format: uuid
+    example: 019cda81-ff67-713c-84f6-53ad00c46069
+  professionRole:
+    type: string
+    maxLength: 255
+    example: UI/UX Designer
+  thumbnailFileId:
+    type: string
+    format: uuid
+    example: 019cda81-ff67-713c-84f6-53ad00c46069
+  name:
+    type: string
+    maxLength: 255
+    example: Bootcamp Cybersecurity
+  redirectUrl:
+    type: string
+    format: uri
+    maxLength: 255
+    example: https://example.com
+  publisher:
+    type: string
+    maxLength: 255
+  startDate:
+    type: string
+    format: date
+  createdAt:
+    type: string
+    format: date-time
+  updatedAt:
+    type: string
+    format: date-time
