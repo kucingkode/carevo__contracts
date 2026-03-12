@@ -56,4 +56,4 @@ InternalServerError:
   content:
     application/json:
       schema:
-        $ref: "./schemas/RateLimitErrorResponse.yaml"
+        $ref: "./schemas/InternalErrorResponse.yaml"
