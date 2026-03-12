@@ -2,6 +2,103 @@ get:
   tags: [Profto]
   operationId: listProftos
 
+  security:
+    - bearerAuth: []
+
+  parameters:
+    - name: query
+      in: query
+      schema:
+        type: string
+        maxLength: 255
+      required: false
+    - name: page
+      in: query
+      schema:
+        type: integer
+      required: false
+    - name: limit
+      in: query
+      schema:
+        type: integer
+      required: false
+
+  responses:
+    "200":
+      description: Request successful
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              required:
+                - userId
+                - username
+                - name
+                - avatarFileId
+                - professionRole
+              properties:
+                userId:
+                  type: string
+                  format: uuid
+                  example: 019cda81-ff67-713c-84f6-53ad00c46069
+                username:
+                  type: string
+                  pattern: "^[a-zA-Z0-9_-]{3,30}$"
+                  example: john_doe
+                name:
+                  type: string
+                  maxLength: 255
+                avatarFileId:
+                  type: string
+                  format: uuid
+                  example: 019cda81-ff67-713c-84f6-53ad00c46069
+                professionRole:
+                  type: string
+                  maxLength: 255
+
+    "400":
+      $ref: "../../../components/responses.yaml#/ValidationError"
+    "401":
+      $ref: "../../../components/responses.yaml#/Unauthorized"
+    "429":
+      $ref: "../../../components/responses.yaml#/RateLimit"
+    "500":
+      $ref: "../../../components/responses.yaml#/InternalServerError"
+
 patch:
   tags: [Profto]
   operationId: updateProfto
+
+  security:
+    - bearerAuth: []
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          allOf:
+            - $ref: "../../../components/schemas/ProftoBase.yaml"
+            - required:
+                - userId
+
+  responses:
+    "200":
+      description: Profto updated successfully
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+
+    "400":
+      $ref: "../../../components/responses.yaml#/ValidationError"
+    "401":
+      $ref: "../../../components/responses.yaml#/Unauthorized"
+    "429":
+      $ref: "../../../components/responses.yaml#/RateLimit"
+    "500":
+      $ref: "../../../components/responses.yaml#/InternalServerError"

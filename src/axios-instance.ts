@@ -4,7 +4,6 @@ import type {
   AxiosRequestConfig,
   InternalAxiosRequestConfig,
 } from "axios";
-import { authRefresh } from "../generated/api/index";
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_API_URL ??
@@ -22,6 +21,7 @@ interface QueueItem {
 
 // state
 let accessToken: string | null = null;
+let csrfToken: string | null = null;
 let isRefreshing = false;
 let queue: QueueItem[] = [];
 
@@ -44,7 +44,7 @@ const client: AxiosInstance = axios.create({
 });
 
 // request interceptor
-client.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+client.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
   if (accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`;
   }
@@ -73,7 +73,17 @@ const renewAccessToken = async (): Promise<string> => {
   isRefreshing = true;
 
   try {
-    const { accessToken: newToken } = await authRefresh();
+    const res = await axios.post<{
+      accessToken: string;
+    }>("/api/v1/auth/refresh", undefined, {
+      baseURL: BASE_URL,
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const newToken = res.data.accessToken;
+
     setAccessToken(newToken);
 
     // flush queue with new token

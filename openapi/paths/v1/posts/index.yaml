@@ -2,6 +2,39 @@ post:
   tags: [Community]
   operationId: createPost
 
-delete:
-  tags: [Community]
-  operationId: deletePost
+  security:
+    - bearerAuth: []
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          allOf:
+            - $ref: "../../../components/schemas/PostBase.yaml"
+            - required: [communityId, content]
+
+  responses:
+    "201":
+      description: Post created
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [createdAt]
+            properties:
+              createdAt:
+                type: string
+                format: date-time
+
+    "400":
+      $ref: "../../../components/responses.yaml#/ValidationError"
+    "401":
+      $ref: "../../../components/responses.yaml#/Unauthorized"
+    "429":
+      $ref: "../../../components/responses.yaml#/RateLimit"
+    "500":
+      $ref: "../../../components/responses.yaml#/InternalServerError"

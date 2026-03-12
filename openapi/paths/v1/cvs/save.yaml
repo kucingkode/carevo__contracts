@@ -1,3 +1,22 @@
 post:
   tags: [Cv]
   operationId: saveCv
+
+  security:
+    - bearerAuth: []
+
+  responses:
+    "200":
+      description: CV saved successfully
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+
+    "400":
+      $ref: "../../../components/responses.yaml#/ValidationError"
+    "401":
+      $ref: "../../../components/responses.yaml#/Unauthorized"
+    "429":
+      $ref: "../../../components/responses.yaml#/RateLimit"
+    "500":
+      $ref: "../../../components/responses.yaml#/InternalServerError"

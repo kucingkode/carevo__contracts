@@ -94,7 +94,7 @@ paths:
   /v1/communities/feed:
     $ref: ./paths/v1/communities/feed.yaml
 
-  # Posts
+  # # Posts
   /v1/posts:
     $ref: ./paths/v1/posts/index.yaml
   /v1/posts/feed:

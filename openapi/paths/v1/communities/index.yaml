@@ -1,3 +1,46 @@
 get:
   tags: [Community]
   operationId: listCommunities
+
+  security:
+    - bearerAuth: []
+
+  parameters:
+    - name: query
+      in: query
+      schema:
+        type: string
+        maxLength: 255
+      required: false
+    - name: page
+      in: query
+      schema:
+        type: integer
+      required: false
+    - name: limit
+      in: query
+      schema:
+        type: integer
+      required: false
+
+  responses:
+    "200":
+      description: Request successful
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../../../components/schemas/Community.yaml
+
+    "400":
+      $ref: "../../../components/responses.yaml#/ValidationError"
+    "401":
+      $ref: "../../../components/responses.yaml#/Unauthorized"
+    "429":
+      $ref: "../../../components/responses.yaml#/RateLimit"
+    "500":
+      $ref: "../../../components/responses.yaml#/InternalServerError"

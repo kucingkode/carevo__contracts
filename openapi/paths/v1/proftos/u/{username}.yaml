@@ -2,6 +2,9 @@ get:
   tags: [Profto]
   operationId: getProfto
 
+  security:
+    - bearerAuth: []
+
   parameters:
     - name: username
       in: path
@@ -12,3 +15,39 @@ get:
         maxLength: 30
         pattern: "^[a-zA-Z0-9_-]{3,30}$"
         example: john_doe
+
+  responses:
+    "200":
+      description: Request successful
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../../../../components/schemas/ProftoBase.yaml"
+              - required:
+                  - userId
+                  - avatarFileId
+                  - name
+                  - professionRole
+                  - lastEducation
+                  - email
+                  - summary
+                  - cvField
+                  - certificates
+                  - experiences
+                  - projects
+                  - links
+
+    "400":
+      $ref: "../../../../components/responses.yaml#/ValidationError"
+    "401":
+      $ref: "../../../../components/responses.yaml#/Unauthorized"
+    "404":
+      $ref: "../../../../components/responses.yaml#/NotFound"
+    "429":
+      $ref: "../../../../components/responses.yaml#/RateLimit"
+    "500":
+      $ref: "../../../../components/responses.yaml#/InternalServerError"

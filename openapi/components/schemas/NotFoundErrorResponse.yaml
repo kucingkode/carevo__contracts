@@ -1,0 +1,8 @@
+allOf:
+  - $ref: "./ErrorResponse.yaml"
+  - properties:
+      error:
+        enum: [NOT_FOUND]
+        example: NOT_FOUND
+      message:
+        example: Not found

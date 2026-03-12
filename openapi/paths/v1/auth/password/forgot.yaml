@@ -26,15 +26,6 @@ post:
       headers:
         x-request-id:
           $ref: "../../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            type: object
-            required: [message]
-            properties:
-              message:
-                type: string
-                example: If this email is registered and verified, a new verification link will be sent
 
     "400":
       $ref: "../../../../components/responses.yaml#/ValidationError"

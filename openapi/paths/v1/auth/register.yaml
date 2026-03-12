@@ -14,8 +14,6 @@ post:
           properties:
             username:
               type: string
-              minLength: 3
-              maxLength: 30
               pattern: "^[a-zA-Z0-9_-]{3,30}$"
               example: john_doe
             email:
@@ -33,18 +31,9 @@ post:
       headers:
         x-request-id:
           $ref: "../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            type: object
-            required: [message]
-            properties:
-              message:
-                type: string
-                example: Registration successful, please verify your email
 
     "409":
-      description: Username or email already registered
+      description: Username or email already taken
       headers:
         x-request-id:
           $ref: "../../../components/headers.yaml#/RequestID"
@@ -55,8 +44,8 @@ post:
               - $ref: "../../../components/schemas/ErrorResponse.yaml"
               - properties:
                   error:
-                    enum: [EMAIL_REGISTERED, USERNAME_TAKEN]
-                    example: EMAIL_REGISTERED
+                    enum: [EMAIL_TAKEN, USERNAME_TAKEN]
+                    example: EMAIL_TAKEN
                   message:
                     example: Email is already taken
 

@@ -1,3 +1,35 @@
 post:
   tags: [Community]
   operationId: leaveCommunity
+
+  security:
+    - bearerAuth: []
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required: [communityId]
+          properties:
+            communityId:
+              type: string
+              format: uuid
+              example: 019cda81-ff67-713c-84f6-53ad00c46069
+
+  responses:
+    "200":
+      description: Community joined successfully
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+
+    "400":
+      $ref: "../../../components/responses.yaml#/ValidationError"
+    "401":
+      $ref: "../../../components/responses.yaml#/Unauthorized"
+    "429":
+      $ref: "../../../components/responses.yaml#/RateLimit"
+    "500":
+      $ref: "../../../components/responses.yaml#/InternalServerError"

@@ -18,6 +18,16 @@ Forbidden:
       schema:
         $ref: "./schemas/UnauthorizedErrorResponse.yaml"
 
+NotFound:
+  description: Not found
+  headers:
+    x-request-id:
+      $ref: "./headers.yaml#/RequestID"
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas/NotFoundErrorResponse.yaml"
+
 ValidationError:
   description: Validation error
   headers:

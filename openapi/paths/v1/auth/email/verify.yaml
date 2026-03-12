@@ -22,15 +22,6 @@ post:
       headers:
         x-request-id:
           $ref: "../../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            type: object
-            required: [message]
-            properties:
-              message:
-                type: string
-                example: Email verified successful
 
     "400":
       $ref: "../../../../components/responses.yaml#/ValidationError"

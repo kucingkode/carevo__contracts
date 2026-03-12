@@ -1,5 +1,9 @@
 type: object
 properties:
+  userId:
+    type: string
+    format: uuid
+    example: 019cda81-ff67-713c-84f6-53ad00c46069
   avatarFileId:
     type: [string, null]
     format: uuid
@@ -20,10 +24,6 @@ properties:
     type: [string, null]
     format: email
     maxLength: 255
-  phone:
-    type: [string, null]
-    pattern: ^\+[1-9]\d{1,14}$
-    example: "+62xxxxxxxxxxx"
   summary:
     type: [string, null]
     format: string

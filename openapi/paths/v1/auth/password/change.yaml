@@ -32,22 +32,11 @@ post:
       headers:
         x-request-id:
           $ref: "../../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            type: object
-            required: [message]
-            properties:
-              message:
-                type: string
-                example: Password change successful
 
     "400":
       $ref: "../../../../components/responses.yaml#/ValidationError"
     "401":
       $ref: "../../../../components/responses.yaml#/Unauthorized"
-    "403":
-      $ref: "../../../../components/responses.yaml#/Forbidden"
     "429":
       $ref: "../../../../components/responses.yaml#/RateLimit"
     "500":

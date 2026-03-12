@@ -2,6 +2,9 @@ post:
   tags: [Community]
   operationId: likePost
 
+  security:
+    - bearerAuth: []
+
   parameters:
     - name: postId
       in: path
@@ -10,10 +13,48 @@ post:
         type: string
         format: uuid
         example: 019cda81-ff67-713c-84f6-53ad00c46069
+
+  responses:
+    "201":
+      description: Post liked successfully
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+
+    "409":
+      description: Post already liked
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../../../../components/schemas/ErrorResponse.yaml"
+              - properties:
+                  error:
+                    enum: [POST_ALREADY_LIKED]
+                    example: POST_ALREADY_LIKED
+                  message:
+                    example: Post already liked
+
+    "400":
+      $ref: "../../../../components/responses.yaml#/ValidationError"
+    "401":
+      $ref: "../../../../components/responses.yaml#/Unauthorized"
+    "404":
+      $ref: "../../../../components/responses.yaml#/NotFound"
+    "429":
+      $ref: "../../../../components/responses.yaml#/RateLimit"
+    "500":
+      $ref: "../../../../components/responses.yaml#/InternalServerError"
 
 delete:
   tags: [Community]
-  operationId: dislikePost
+  operationId: deletePostLike
+
+  security:
+    - bearerAuth: []
 
   parameters:
     - name: postId
@@ -23,3 +64,21 @@ delete:
         type: string
         format: uuid
         example: 019cda81-ff67-713c-84f6-53ad00c46069
+
+  responses:
+    "200":
+      description: Post like deleted successfully
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+
+    "400":
+      $ref: "../../../../components/responses.yaml#/ValidationError"
+    "401":
+      $ref: "../../../../components/responses.yaml#/Unauthorized"
+    "404":
+      $ref: "../../../../components/responses.yaml#/NotFound"
+    "429":
+      $ref: "../../../../components/responses.yaml#/RateLimit"
+    "500":
+      $ref: "../../../../components/responses.yaml#/InternalServerError"

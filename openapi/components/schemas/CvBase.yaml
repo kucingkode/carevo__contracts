@@ -1,173 +1,175 @@
 type: object
 properties:
-  type: object
-  properties:
-    personalInformation:
+  userId:
+    type: string
+    format: uuid
+    example: 019cda81-ff67-713c-84f6-53ad00c46069
+  personalInformation:
+    type: object
+    required: []
+    properties:
+      firstName:
+        type: string
+        maxLength: 255
+      lastName:
+        type: string
+        maxLength: 255
+      profile:
+        type: string
+        maxLength: 2000
+      websiteUrl:
+        type: string
+        format: uri
+        maxLength: 255
+      phone:
+        type: string
+        pattern: ^\+[1-9]\d{1,14}$
+        example: "+62xxxxxxxxxxx"
+
+  skills:
+    type: array
+    items:
       type: object
       required: []
       properties:
-        firstName:
+        name:
           type: string
           maxLength: 255
-        lastName:
+        score:
+          type: integer
+          min: 1
+          max: 5
+
+  educations:
+    type: array
+    items:
+      type: object
+      required: [educationLevel, institution]
+      properties:
+        educationLevel:
           type: string
           maxLength: 255
-        profile:
+        institution:
           type: string
-          maxLength: 2000
-        websiteUrl:
+          enum: [SD, SMP, MTS, SMA, MA, SMK, Profesi, D3, D4, S1, S2, S3]
+        city:
+          type: string
+          maxLength: 255
+        studyProgram:
+          type: string
+          maxLength: 255
+        startYear:
+          type: integer
+          min: 1900
+        endYear:
+          type: integer
+          min: 1900
+        score:
+          type: number
+          example: 3.8
+        maxScale:
+          type: number
+          example: 4
+
+  workExperiences:
+    type: array
+    items:
+      type: object
+      required: [name, organizer]
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        organizer:
+          type: string
+          maxLength: 255
+        link:
           type: string
           format: uri
           maxLength: 255
-        phone:
+        description:
           type: string
-          pattern: ^\+[1-9]\d{1,14}$
-          example: "+62xxxxxxxxxxx"
+          maxLength: 2000
+        startYear:
+          type: integer
+          min: 1900
+        endYear:
+          type: integer
+          min: 1900
 
-    skills:
-      type: array
-      items:
-        type: object
-        required: []
-        properties:
-          name:
-            type: string
-            maxLength: 255
-          score:
-            type: integer
-            min: 1
-            max: 5
+  courses:
+    type: array
+    items:
+      type: object
+      required: [name, organizer]
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        organizer:
+          type: string
+          maxLength: 255
+        link:
+          type: string
+          format: uri
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 2000
+        startYear:
+          type: integer
+          minLength: 1900
+        endYear:
+          type: integer
+          minLength: 1900
+        location:
+          type: string
+          maxLength: 255
 
-    educations:
-      type: array
-      items:
-        type: object
-        required: [educationLevel, institution]
-        properties:
-          educationLevel:
-            type: string
-            maxLength: 255
-          institution:
-            type: string
-            enum: [SD, SMP, MTS, SMA, MA, SMK, Profesi, D3, D4, S1, S2, S3]
-          city:
-            type: string
-            maxLength: 255
-          studyProgram:
-            type: string
-            maxLength: 255
-          startYear:
-            type: integer
-            min: 1900
-          endYear:
-            type: integer
-            min: 1900
-          score:
-            type: number
-            example: 3.8
-          maxScale:
-            type: number
-            example: 4
+  organizations:
+    type: array
+    items:
+      type: object
+      required: [position, organizationName]
+      properties:
+        position:
+          type: string
+          maxLength: 255
+        organizationName:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 2000
+        city:
+          type: string
+          maxLength: 255
+        startYear:
+          type: integer
+          min: 1900
+        endYear:
+          type: integer
+          min: 1900
 
-    workExperiences:
-      type: array
-      items:
-        type: object
-        required: [name, organizer]
-        properties:
-          name:
-            type: string
-            maxLength: 255
-          organizer:
-            type: string
-            maxLength: 255
-          link:
-            type: string
-            format: uri
-            maxLength: 255
-          description:
-            type: string
-            maxLength: 2000
-          startYear:
-            type: integer
-            min: 1900
-          endYear:
-            type: integer
-            min: 1900
-
-    courses:
-      type: array
-      items:
-        type: object
-        required: [name, organizer]
-        properties:
-          name:
-            type: string
-            maxLength: 255
-          organizer:
-            type: string
-            maxLength: 255
-          link:
-            type: string
-            format: uri
-            maxLength: 255
-          description:
-            type: string
-            maxLength: 2000
-          startYear:
-            type: integer
-            minLength: 1900
-          endYear:
-            type: integer
-            minLength: 1900
-          location:
-            type: string
-            maxLength: 255
-
-    organizations:
-      type: array
-      items:
-        type: object
-        required: [position, organizationName]
-        properties:
-          position:
-            type: string
-            maxLength: 255
-          organizationName:
-            type: string
-            maxLength: 255
-          description:
-            type: string
-            maxLength: 2000
-          city:
-            type: string
-            maxLength: 255
-          startYear:
-            type: integer
-            min: 1900
-          endYear:
-            type: integer
-            min: 1900
-
-    certifications:
-      type: array
-      items:
-        type: object
-        required: [name, publisher]
-        properties:
-          name:
-            type: string
-            maxLength: 255
-          publisher:
-            type: string
-            maxLength: 255
-          publishDate:
-            type: string
-            format: date
-          verificationUrl:
-            type: string
-            format: uri
-            maxLength: 255
-          certificateNumber:
-            type: string
-            maxLength: 255
+  certifications:
+    type: array
+    items:
+      type: object
+      required: [name, publisher]
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        publisher:
+          type: string
+          maxLength: 255
+        publishDate:
+          type: string
+          format: date
+        verificationUrl:
+          type: string
+          format: uri
+          maxLength: 255
+        certificateNumber:
+          type: string
+          maxLength: 255

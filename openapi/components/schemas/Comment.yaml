@@ -1,4 +1,5 @@
 type: object
+required: [userId, postId, content]
 properties:
   userId:
     type: string

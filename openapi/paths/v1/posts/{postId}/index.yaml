@@ -1,41 +1,25 @@
-get:
-  tags: [Cv]
-  operationId: downloadCv
+delete:
+  tags: [Community]
+  operationId: deletePost
 
   security:
     - bearerAuth: []
 
   parameters:
-    - name: userId
+    - name: postId
       in: path
       required: true
       schema:
         type: string
         format: uuid
         example: 019cda81-ff67-713c-84f6-53ad00c46069
-    - name: type
-      in: query
-      required: true
-      schema:
-        type: string
-        enum: [draft, saved]
-    - name: preview
-      in: query
-      required: true
-      schema:
-        type: boolean
 
   responses:
     "200":
-      description: CV PDF file
+      description: Post deleted successfully
       headers:
         x-request-id:
           $ref: "../../../../components/headers.yaml#/RequestID"
-      content:
-        application/pdf:
-          schema:
-            type: string
-            format: binary
 
     "400":
       $ref: "../../../../components/responses.yaml#/ValidationError"

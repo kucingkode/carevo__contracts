@@ -1,3 +1,44 @@
 post:
   tags: [Cv]
   operationId: aiGenerateCv
+
+  security:
+    - bearerAuth: []
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required: [input, section]
+          input:
+            type: string
+            maxLength: 2000
+          section:
+            type: string
+            enum:
+              - PROFILE
+              - WORK_EXPERIENCE_DESCRIPTION
+              - ORGANIZATION_DESCRIPTION
+              - COURSE_DESCRIPTION
+
+  responses:
+    "200":
+      description: A stream of plain text strings
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+      content:
+        text/plain:
+          schema:
+            type: string
+
+    "400":
+      $ref: "../../../../components/responses.yaml#/ValidationError"
+    "401":
+      $ref: "../../../../components/responses.yaml#/Unauthorized"
+    "429":
+      $ref: "../../../../components/responses.yaml#/RateLimit"
+    "500":
+      $ref: "../../../../components/responses.yaml#/InternalServerError"
