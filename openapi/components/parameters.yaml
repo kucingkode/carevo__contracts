@@ -1,19 +1,9 @@
-CsrfCookie:
-  name: csrf_token
-  in: cookie
-  required: true
-  schema:
-    type: string
-    minLength: 32
-  description: Protection from CSRF attack
-
 RefreshCookie:
   name: refresh_token
   in: cookie
   required: true
   schema:
     type: string
-    minLength: 32
     example: eyJhbGciOiJIUzI1NiJ9...
   description: JWT refresh token
 

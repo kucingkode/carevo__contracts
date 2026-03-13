@@ -18,6 +18,7 @@ post:
             email:
               type: string
               format: email
+              maxLength: 255
               example: user@example.com
 
   responses:
