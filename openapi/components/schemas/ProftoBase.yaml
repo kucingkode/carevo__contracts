@@ -95,7 +95,7 @@ properties:
         name:
           type: string
           maxLength: 255
-        link:
+        url:
           type: string
           format: uri
-          maxLength: 255
+          maxLength: 500

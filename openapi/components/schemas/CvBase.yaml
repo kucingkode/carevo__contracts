@@ -20,7 +20,7 @@ properties:
       websiteUrl:
         type: string
         format: uri
-        maxLength: 255
+        maxLength: 500
       phone:
         type: string
         pattern: ^\+[1-9]\d{1,14}$
@@ -75,27 +75,30 @@ properties:
     type: array
     items:
       type: object
-      required: [name, organizer]
+      required: [position, companyName]
       properties:
-        name:
+        position:
           type: string
           maxLength: 255
-        organizer:
-          type: string
-          maxLength: 255
-        link:
+        companyName:
           type: string
           format: uri
           maxLength: 255
-        description:
+        employmentStatus:
           type: string
-          maxLength: 2000
+          maxLength: 255
+        city:
+          type: string
+          maxLength: 255
         startYear:
           type: integer
           min: 1900
         endYear:
           type: integer
           min: 1900
+        description:
+          type: string
+          maxLength: 2000
 
   courses:
     type: array
@@ -109,10 +112,10 @@ properties:
         organizer:
           type: string
           maxLength: 255
-        link:
+        url:
           type: string
           format: uri
-          maxLength: 255
+          maxLength: 500
         description:
           type: string
           maxLength: 2000
@@ -169,7 +172,7 @@ properties:
         verificationUrl:
           type: string
           format: uri
-          maxLength: 255
+          maxLength: 500
         certificateNumber:
           type: string
           maxLength: 255
