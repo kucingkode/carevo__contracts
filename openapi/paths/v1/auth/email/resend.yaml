@@ -1,8 +1,8 @@
 post:
   tags: [Auth]
-  operationId: authEmailResend
+  operationId: resendVerificationEmail
   summary: |
-    [authEmailResend] Resend email verification token
+    [resendVerificationEmail] Resend email verification token
   description: |
     Resend email verification token to the user's email address.
     Previous token will be invalidated and a new one will be issued.

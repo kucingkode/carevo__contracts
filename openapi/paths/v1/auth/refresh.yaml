@@ -1,6 +1,6 @@
 post:
   tags: [Auth]
-  operationId: refreshToken
+  operationId: refreshUserToken
   summary: |
     [refreshToken] Refresh token
 
