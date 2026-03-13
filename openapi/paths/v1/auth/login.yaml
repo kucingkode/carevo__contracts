@@ -10,7 +10,7 @@ post:
       application/json:
         schema:
           type: object
-          required: [email, password]
+          required: [email, password, rememberMe]
           properties:
             email:
               type: string
@@ -22,6 +22,8 @@ post:
               minLength: 8
               maxLength: 128
               example: StrongPassword123
+            rememberMe:
+              type: boolean
 
   responses:
     "200":

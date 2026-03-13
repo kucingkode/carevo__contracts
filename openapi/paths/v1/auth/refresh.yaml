@@ -10,6 +10,17 @@ post:
   parameters:
     - $ref: "../../../components/parameters.yaml#/RefreshCookie"
 
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required: [rememberMe]
+          properties:
+            rememberMe:
+              type: boolean
+
   responses:
     "200":
       description: Access token refreshed successfully
