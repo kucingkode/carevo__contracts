@@ -23,6 +23,23 @@ post:
         x-request-id:
           $ref: "../../../../components/headers.yaml#/RequestID"
 
+    "409":
+      description: Email already verified
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../../../../components/schemas/ErrorResponse.yaml"
+              - properties:
+                  error:
+                    enum: [EMAIL_ALREADY_VERIFIED]
+                    example: EMAIL_ALREADY_VERIFIED
+                  message:
+                    example: Email is already verified
+
     "400":
       $ref: "../../../../components/responses.yaml#/ValidationError"
     "401":
