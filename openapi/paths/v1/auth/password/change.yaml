@@ -33,10 +33,21 @@ post:
         x-request-id:
           $ref: "../../../../components/headers.yaml#/RequestID"
 
+    "401":
+      description: Unauthorized
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "../../../../components/schemas/ErrorResponse.yaml"
+              - properties:
+                  error:
+                    enum: [UNAUTHORIZED, INCORRECT_PASSWORD]
     "400":
       $ref: "../../../../components/responses.yaml#/ValidationError"
-    "401":
-      $ref: "../../../../components/responses.yaml#/Unauthorized"
     "429":
       $ref: "../../../../components/responses.yaml#/RateLimit"
     "500":

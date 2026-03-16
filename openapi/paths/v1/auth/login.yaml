@@ -62,7 +62,7 @@ post:
                     enum: [INCORRECT_CREDENTIALS]
                     example: INCORRECT_CREDENTIALS
                   message:
-                    example: Invalid email or password
+                    example: Incorrect email or password
 
     "403":
       description: Email is not verified
