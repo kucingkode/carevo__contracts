@@ -11,7 +11,7 @@ const BASE_URL =
   "https://localhost:8080";
 
 const LOGIN_PATH =
-  process.env.NEXT_PUBLIC_LOGIN_PATH ?? process.env.LOGIN_PATH ?? "/login";
+  process.env.NEXT_PUBLIC_LOGIN_PATH ?? process.env.LOGIN_PATH ?? "/auth/login";
 
 // types
 interface QueueItem {
@@ -21,7 +21,6 @@ interface QueueItem {
 
 // state
 let accessToken: string | null = null;
-let csrfToken: string | null = null;
 let isRefreshing = false;
 let queue: QueueItem[] = [];
 
@@ -62,8 +61,8 @@ const handleSessionExpired = () => {
 };
 
 // refresh helper
-const renewAccessToken = async (): Promise<string> => {
-  // if already renewing, queue this request and wait
+const refreshAccessToken = async (): Promise<string> => {
+  // if already refreshing, queue this request and wait
   if (isRefreshing) {
     return new Promise<string>((resolve, reject) => {
       queue.push({ resolve, reject });
@@ -111,11 +110,11 @@ client.interceptors.response.use(
     };
 
     const is401 = err.response?.status === 401;
-    const isRenewEndpoint = original.url?.includes("/auth/refresh");
+    const isRefreshEndpoint = original.url?.includes("/auth/refresh");
     const alreadyRetried = original._retry;
 
-    // if 401 on renew itself, session is dead - redirect to login
-    if (is401 && isRenewEndpoint) {
+    // if 401 on refresh itself, session is dead - redirect to login
+    if (is401 && isRefreshEndpoint) {
       clearAccessToken();
       handleSessionExpired();
       return Promise.reject(err);
@@ -126,7 +125,7 @@ client.interceptors.response.use(
       original._retry = true;
 
       try {
-        const newToken = await renewAccessToken();
+        const newToken = await refreshAccessToken();
         original.headers.Authorization = `Bearer ${newToken}`;
         return client(original);
       } catch {
