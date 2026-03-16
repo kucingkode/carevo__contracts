@@ -2,7 +2,7 @@ type: object
 required:
   - id
   - professionRole
-  - thumbnailFileId
+  - thumbnailUrl
   - name
   - redirectUrl
   - publisher
@@ -17,7 +17,7 @@ properties:
     type: string
     maxLength: 255
     example: UI/UX Designer
-  thumbnailFileId:
+  thumbnailUrl:
     type: string
     format: uuid
     example: 019cda81-ff67-713c-84f6-53ad00c46069
