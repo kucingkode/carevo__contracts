@@ -1,6 +1,6 @@
 get:
   tags: [Community]
-  operationId: listUserComunities
+  operationId: listUserCommunities
 
   security:
     - bearerAuth: []
