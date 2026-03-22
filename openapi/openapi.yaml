@@ -56,6 +56,9 @@ paths:
   /v1/auth/oauth/google/callback:
     $ref: ./paths/v1/auth/oauth/google/callback.yaml
 
+  /v1/users/me:
+    $ref: ./paths/v1/users/me.yaml
+
   # Bootcamps
   /v1/bootcamps:
     $ref: ./paths/v1/bootcamps/index.yaml

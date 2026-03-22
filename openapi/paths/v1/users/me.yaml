@@ -1,0 +1,41 @@
+get:
+  tags: [Auth]
+  operationId: getUser
+
+  security:
+    - bearerAuth: []
+
+  responses:
+    "200":
+      description: Request successful
+      headers:
+        x-request-id:
+          $ref: "../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - userId
+              - username
+              - email
+            properties:
+              userId:
+                type: string
+                format: uuid
+                example: 019cda81-ff67-713c-84f6-53ad00c46069
+              username:
+                type: string
+                pattern: "^[a-zA-Z0-9_-]{3,30}$"
+                example: john_doe
+              email:
+                type: string
+                format: email
+                maxLength: 255
+
+    "401":
+      $ref: "../../../components/responses.yaml#/Unauthorized"
+    "429":
+      $ref: "../../../components/responses.yaml#/RateLimit"
+    "500":
+      $ref: "../../../components/responses.yaml#/InternalServerError"

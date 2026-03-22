@@ -109,19 +109,18 @@ client.interceptors.response.use(
       _retry?: boolean;
     };
 
-    const is401 = err.response?.status === 401;
-    const isRefreshEndpoint = original.url?.includes("/auth/refresh");
-    const alreadyRetried = original._retry;
-
     // if 401 on refresh itself, session is dead - redirect to login
-    if (is401 && isRefreshEndpoint) {
+    const isTokenInvalid = err.response?.data.error === "TOKEN_INVALID";
+    if (isTokenInvalid) {
       clearAccessToken();
       handleSessionExpired();
       return Promise.reject(err);
     }
 
-    // if 401 on any other endpoint, try renewing once
-    if (is401 && !alreadyRetried) {
+    const alreadyRetried = original._retry;
+    const isTokenExpired = err.response?.data.error === "TOKEN_EXPIRED";
+
+    if (isTokenExpired && !alreadyRetried) {
       original._retry = true;
 
       try {
