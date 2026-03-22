@@ -2,24 +2,13 @@ post:
   tags: [Auth]
   operationId: refreshUserToken
   summary: |
-    [refreshToken] Refresh token
+    [refreshUserToken] Refresh token
 
   security:
     - bearerAuth: []
 
   parameters:
     - $ref: "../../../components/parameters.yaml#/RefreshCookie"
-
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          type: object
-          required: [rememberMe]
-          properties:
-            rememberMe:
-              type: boolean
 
   responses:
     "200":
