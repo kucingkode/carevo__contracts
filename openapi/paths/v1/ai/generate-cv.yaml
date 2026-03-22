@@ -12,17 +12,18 @@ post:
         schema:
           type: object
           required: [input, section]
-          input:
-            type: string
-            maxLength: 2000
-          section:
-            type: string
-            enum:
-              - PROFILE
-              - WORK_EXPERIENCE_DESCRIPTION
-              - ORGANIZATION_DESCRIPTION
-              - COURSE_DESCRIPTION
-              - EDUCATION_DESCRIPTION
+          properties:
+            input:
+              type: string
+              maxLength: 2000
+            section:
+              type: string
+              enum:
+                - PROFILE
+                - WORK_EXPERIENCE_DESCRIPTION
+                - ORGANIZATION_DESCRIPTION
+                - COURSE_DESCRIPTION
+                - EDUCATION_DESCRIPTION
 
   responses:
     "200":
