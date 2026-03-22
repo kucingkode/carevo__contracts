@@ -1,0 +1,31 @@
+post:
+  tags: [Cv]
+  operationId: saveCv
+
+  security:
+    - bearerAuth: []
+
+  parameters:
+    - name: userId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: 019cda81-ff67-713c-84f6-53ad00c46069
+
+  responses:
+    "200":
+      description: CV saved successfully
+      headers:
+        x-request-id:
+          $ref: "../../../../../components/headers.yaml#/RequestID"
+
+    "400":
+      $ref: "../../../../../components/responses.yaml#/ValidationError"
+    "401":
+      $ref: "../../../../../components/responses.yaml#/Unauthorized"
+    "429":
+      $ref: "../../../../../components/responses.yaml#/RateLimit"
+    "500":
+      $ref: "../../../../../components/responses.yaml#/InternalServerError"

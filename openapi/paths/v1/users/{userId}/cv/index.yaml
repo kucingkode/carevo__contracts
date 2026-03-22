@@ -1,12 +1,12 @@
 get:
-  tags: [Community]
-  operationId: listComments
+  tags: [Cv]
+  operationId: getCv
 
   security:
     - bearerAuth: []
 
   parameters:
-    - name: postId
+    - name: userId
       in: path
       required: true
       schema:
@@ -23,30 +23,42 @@ get:
       content:
         application/json:
           schema:
-            type: array
-            items:
-              $ref: "../../../../../components/schemas/Comment.yaml"
+            allOf:
+              - $ref: "../../../../../components/schemas/CvBase.yaml"
+              - required:
+                  - userId
+                  - personalInformation
+                  - skills
+                  - educations
+                  - workExperiences
+                  - courses
+                  - organizations
+                  - certifications
+                  - updatedAt
+                properties:
+                  userId:
+                    type: string
+                    format: uuid
+                    example: 019cda81-ff67-713c-84f6-53ad00c46069
+                  updatedAt:
+                    type: string
+                    format: date-time
 
     "400":
       $ref: "../../../../../components/responses.yaml#/ValidationError"
     "401":
       $ref: "../../../../../components/responses.yaml#/Unauthorized"
-    "404":
-      $ref: "../../../../../components/responses.yaml#/NotFound"
     "429":
       $ref: "../../../../../components/responses.yaml#/RateLimit"
     "500":
       $ref: "../../../../../components/responses.yaml#/InternalServerError"
 
-post:
-  tags: [Community]
-  operationId: createComment
-
-  security:
-    - bearerAuth: []
+patch:
+  tags: [Cv]
+  operationId: updateCv
 
   parameters:
-    - name: postId
+    - name: userId
       in: path
       required: true
       schema:
@@ -54,47 +66,27 @@ post:
         format: uuid
         example: 019cda81-ff67-713c-84f6-53ad00c46069
 
+  security:
+    - bearerAuth: []
+
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          type: object
-          required: [content]
-          properties:
-            parentId:
-              type: string
-              format: uuid
-              example: 019cda81-ff67-713c-84f6-53ad00c46069
-            content:
-              type: string
-              maxLength: 2000
+          $ref: "../../../../../components/schemas/CvBase.yaml"
 
   responses:
-    "201":
-      description: Comment created
+    "200":
+      description: Request successful
       headers:
         x-request-id:
           $ref: "../../../../../components/headers.yaml#/RequestID"
-      content:
-        application/json:
-          schema:
-            type: object
-            required: [createdAt]
-            properties:
-              commentId:
-                type: string
-                format: uuid
-              createdAt:
-                type: string
-                format: date-time
 
     "400":
       $ref: "../../../../../components/responses.yaml#/ValidationError"
     "401":
       $ref: "../../../../../components/responses.yaml#/Unauthorized"
-    "404":
-      $ref: "../../../../../components/responses.yaml#/NotFound"
     "429":
       $ref: "../../../../../components/responses.yaml#/RateLimit"
     "500":

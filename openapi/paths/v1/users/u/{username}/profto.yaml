@@ -1,6 +1,6 @@
 get:
   tags: [Profto]
-  operationId: getProfto
+  operationId: getUserProfto
 
   security:
     - bearerAuth: []
@@ -21,12 +21,12 @@ get:
       description: Request successful
       headers:
         x-request-id:
-          $ref: "../../../../components/headers.yaml#/RequestID"
+          $ref: "../../../../../components/headers.yaml#/RequestID"
       content:
         application/json:
           schema:
             allOf:
-              - $ref: "../../../../components/schemas/ProftoBase.yaml"
+              - $ref: "../../../../../components/schemas/ProftoBase.yaml"
               - required:
                   - userId
                   - avatarFileId
@@ -40,14 +40,23 @@ get:
                   - experiences
                   - projects
                   - links
+                  - updatedAt
+                properties:
+                  userId:
+                    type: string
+                    format: uuid
+                    example: 019cda81-ff67-713c-84f6-53ad00c46069
+                  updatedAt:
+                    type: string
+                    format: date-time
 
     "400":
-      $ref: "../../../../components/responses.yaml#/ValidationError"
+      $ref: "../../../../../components/responses.yaml#/ValidationError"
     "401":
-      $ref: "../../../../components/responses.yaml#/Unauthorized"
+      $ref: "../../../../../components/responses.yaml#/Unauthorized"
     "404":
-      $ref: "../../../../components/responses.yaml#/NotFound"
+      $ref: "../../../../../components/responses.yaml#/NotFound"
     "429":
-      $ref: "../../../../components/responses.yaml#/RateLimit"
+      $ref: "../../../../../components/responses.yaml#/RateLimit"
     "500":
-      $ref: "../../../../components/responses.yaml#/InternalServerError"
+      $ref: "../../../../../components/responses.yaml#/InternalServerError"

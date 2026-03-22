@@ -1,6 +1,6 @@
 get:
   tags: [Profto]
-  operationId: listProftos
+  operationId: listUsers
 
   security:
     - bearerAuth: []
@@ -60,39 +60,6 @@ get:
                 professionRole:
                   type: string
                   maxLength: 255
-
-    "400":
-      $ref: "../../../components/responses.yaml#/ValidationError"
-    "401":
-      $ref: "../../../components/responses.yaml#/Unauthorized"
-    "429":
-      $ref: "../../../components/responses.yaml#/RateLimit"
-    "500":
-      $ref: "../../../components/responses.yaml#/InternalServerError"
-
-patch:
-  tags: [Profto]
-  operationId: updateProfto
-
-  security:
-    - bearerAuth: []
-
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          allOf:
-            - $ref: "../../../components/schemas/ProftoBase.yaml"
-            - required:
-                - userId
-
-  responses:
-    "200":
-      description: Profto updated successfully
-      headers:
-        x-request-id:
-          $ref: "../../../components/headers.yaml#/RequestID"
 
     "400":
       $ref: "../../../components/responses.yaml#/ValidationError"

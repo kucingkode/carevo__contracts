@@ -1,0 +1,38 @@
+get:
+  tags: [Community]
+  operationId: listUserComunities
+
+  security:
+    - bearerAuth: []
+
+  parameters:
+    - name: userId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: 019cda81-ff67-713c-84f6-53ad00c46069
+
+  responses:
+    "200":
+      description: User joined community ids
+      headers:
+        x-request-id:
+          $ref: "../../../../components/headers.yaml#/RequestID"
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: string
+              format: uuid
+
+    "400":
+      $ref: "../../../../components/responses.yaml#/ValidationError"
+    "401":
+      $ref: "../../../../components/responses.yaml#/Unauthorized"
+    "429":
+      $ref: "../../../../components/responses.yaml#/RateLimit"
+    "500":
+      $ref: "../../../../components/responses.yaml#/InternalServerError"

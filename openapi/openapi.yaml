@@ -56,22 +56,6 @@ paths:
   /v1/auth/oauth/google/callback:
     $ref: ./paths/v1/auth/oauth/google/callback.yaml
 
-  # Profto
-  /v1/proftos:
-    $ref: ./paths/v1/proftos/index.yaml
-  /v1/proftos/u/{username}:
-    $ref: ./paths/v1/proftos/u/{username}.yaml
-
-  # # CV
-  /v1/cvs:
-    $ref: ./paths/v1/cvs/index.yaml
-  /v1/cvs/download:
-    $ref: ./paths/v1/cvs/{userId}/download.yaml
-  /v1/cvs/save:
-    $ref: ./paths/v1/cvs/save.yaml
-  /v1/cvs/ai/generate:
-    $ref: ./paths/v1/cvs/ai/generate.yaml
-
   # Bootcamps
   /v1/bootcamps:
     $ref: ./paths/v1/bootcamps/index.yaml
@@ -109,5 +93,25 @@ paths:
   # Files
   /v1/files/{fileId}:
     $ref: ./paths/v1/files/{fileId}.yaml
-  /v1/files:
-    $ref: ./paths/v1/files/index.yaml
+  /v1/files/upload:
+    $ref: ./paths/v1/files/upload.yaml
+
+  # AI
+  /v1/ai/generate-cv:
+    $ref: ./paths/v1/ai/generate-cv.yaml
+
+  # Users
+  /v1/users:
+    $ref: ./paths/v1/users/index.yaml
+  /v1/users/{userId}/communities:
+    $ref: ./paths/v1/users/{userId}/communities.yaml
+  /v1/users/u/{username}/profto:
+    $ref: ./paths/v1/users/u/{username}/profto.yaml
+  /v1/users/{userId}/profto:
+    $ref: ./paths/v1/users/{userId}/profto.yaml
+  /v1/users/{userId}/cv:
+    $ref: ./paths/v1/users/{userId}/cv/index.yaml
+  /v1/users/{userId}/cv/download:
+    $ref: ./paths/v1/users/{userId}/cv/download.yaml
+  /v1/users/{userId}/cv/save:
+    $ref: ./paths/v1/users/{userId}/cv/save.yaml

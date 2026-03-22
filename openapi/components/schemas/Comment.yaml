@@ -1,6 +1,15 @@
 type: object
-required: [userId, postId, content]
+required:
+  - id
+  - userId
+  - postId
+  - content
+  - createdAt
 properties:
+  id:
+    type: string
+    format: uuid
+    example: 019cda81-ff67-713c-84f6-53ad00c46069
   userId:
     type: string
     format: uuid
@@ -16,3 +25,6 @@ properties:
   content:
     type: string
     maxLength: 2000
+  createdAt:
+    type: string
+    format: date-time

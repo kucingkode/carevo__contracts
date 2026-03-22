@@ -1,7 +1,12 @@
 type: object
-required: [userId, username, name, avatarFileId]
+required:
+  - id
+  - username
+  - name
+  - professionRole
+  - avatarFileId
 properties:
-  userId:
+  id:
     type: string
     format: uuid
     example: 019cda81-ff67-713c-84f6-53ad00c46069
@@ -12,9 +17,13 @@ properties:
     pattern: "^[a-zA-Z0-9_-]{3,30}$"
     example: john_doe
   name:
-    type: string
+    type: [string, null]
+    maxLength: 255
+  professionRole:
+    type: [string, null]
+    format: string
     maxLength: 255
   avatarFileId:
-    type: string
+    type: [string, null]
     format: uuid
     example: 019cda81-ff67-713c-84f6-53ad00c46069

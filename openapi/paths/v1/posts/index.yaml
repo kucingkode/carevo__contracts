@@ -26,6 +26,9 @@ post:
             type: object
             required: [createdAt]
             properties:
+              postId:
+                type: string
+                format: uuid
               createdAt:
                 type: string
                 format: date-time

@@ -12,6 +12,12 @@ get:
         type: string
         maxLength: 255
       required: false
+    - name: professionRole
+      in: query
+      schema:
+        type: string
+        maxLength: 255
+      required: false
     - name: page
       in: query
       schema:
