@@ -55,8 +55,6 @@ client.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
 const handleSessionExpired = () => {
   if (typeof window !== "undefined") {
     window.location.href = LOGIN_PATH;
-  } else {
-    throw new Error("SESSION_EXPIRED");
   }
 };
 
