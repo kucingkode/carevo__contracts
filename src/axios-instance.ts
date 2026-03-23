@@ -37,9 +37,6 @@ export const clearAccessToken = () => {
 const client: AxiosInstance = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
-  headers: {
-    "Content-Type": "application/json",
-  },
 });
 
 // request interceptor
