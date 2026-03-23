@@ -8,7 +8,7 @@ export default defineConfig({
       target: "./generated/api/index.ts",
       override: {
         mutator: {
-          path: "./src/axios-instance.ts",
+          path: "./src/api/axios-instance.ts",
           name: "customInstance",
         },
       },

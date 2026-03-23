@@ -8,7 +8,7 @@ import type {
 const BASE_URL =
   process.env.NEXT_PUBLIC_API_URL ??
   process.env.API_URL ??
-  "https://localhost:8080";
+  "https://localhost:8080/api";
 
 const LOGIN_PATH =
   process.env.NEXT_PUBLIC_LOGIN_PATH ?? process.env.LOGIN_PATH ?? "/auth/login";
@@ -56,7 +56,9 @@ const handleSessionExpired = () => {
 };
 
 // refresh helper
-const refreshAccessToken = async (): Promise<string> => {
+const refreshAccessToken = async (
+  config: InternalAxiosRequestConfig,
+): Promise<string> => {
   // if already refreshing, queue this request and wait
   if (isRefreshing) {
     return new Promise<string>((resolve, reject) => {
@@ -67,17 +69,15 @@ const refreshAccessToken = async (): Promise<string> => {
   isRefreshing = true;
 
   try {
-    const res = await axios.post<{
+    const res = await client.post<{
       accessToken: string;
-    }>("/api/v1/auth/refresh", undefined, {
+    }>("/v1/auth/refresh", undefined, {
       baseURL: BASE_URL,
       withCredentials: true,
-      headers: {
-        "Content-Type": "application/json",
-      },
+      adapter: config.adapter,
     });
-    const newToken = res.data.accessToken;
 
+    const newToken = res.data.accessToken;
     setAccessToken(newToken);
 
     // flush queue with new token
@@ -104,8 +104,8 @@ client.interceptors.response.use(
       _retry?: boolean;
     };
 
-    // if 401 on refresh itself, session is dead - redirect to login
-    const isTokenInvalid = err.response?.data.error === "TOKEN_INVALID";
+    const isTokenInvalid = err.response?.data.error === "REFRESH_TOKEN_INVALID";
+
     if (isTokenInvalid) {
       clearAccessToken();
       handleSessionExpired();
@@ -113,13 +113,13 @@ client.interceptors.response.use(
     }
 
     const alreadyRetried = original._retry;
-    const isTokenExpired = err.response?.data.error === "TOKEN_EXPIRED";
+    const isUnauthorized = err.response?.data.error === "UNAUTHORIZED";
 
-    if (isTokenExpired && !alreadyRetried) {
+    if (isUnauthorized && !alreadyRetried) {
       original._retry = true;
 
       try {
-        const newToken = await refreshAccessToken();
+        const newToken = await refreshAccessToken(original);
         original.headers.Authorization = `Bearer ${newToken}`;
         return client(original);
       } catch {
