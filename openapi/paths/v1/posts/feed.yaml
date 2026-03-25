@@ -5,6 +5,15 @@ get:
   security:
     - bearerAuth: []
 
+  parameters:
+    - name: sharedPostId
+      in: query
+      required: false
+      schema:
+        type: string
+        format: uuid
+        example: 019cda81-ff67-713c-84f6-53ad00c46069
+
   responses:
     "200":
       description: Request successful

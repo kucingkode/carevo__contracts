@@ -19,7 +19,7 @@ properties:
         maxLength: 500
       phone:
         type: string
-        pattern: ^\+[1-9]\d{1,14}$
+        pattern: ^\+[1-9]\d{1,15}$
         example: "+62xxxxxxxxxxx"
 
   skills:
@@ -44,10 +44,10 @@ properties:
       properties:
         educationLevel:
           type: string
-          maxLength: 255
+          enum: [SD, SMP, MTS, SMA, MA, SMK, Profesi, D3, D4, S1, S2, S3]
         institution:
           type: string
-          enum: [SD, SMP, MTS, SMA, MA, SMK, Profesi, D3, D4, S1, S2, S3]
+          maxLength: 255
         city:
           type: string
           maxLength: 255
@@ -85,7 +85,14 @@ properties:
           maxLength: 255
         employmentStatus:
           type: string
-          maxLength: 255
+          enum:
+            [
+              Pegawai Tetap,
+              Pegawai Kontrak,
+              Pegawai Magang,
+              Freelance,
+              Paruh Waktu,
+            ]
         city:
           type: string
           maxLength: 255
