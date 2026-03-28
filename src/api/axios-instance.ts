@@ -48,13 +48,6 @@ client.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
   return config;
 });
 
-// session expired helper
-const handleSessionExpired = () => {
-  if (typeof window !== "undefined") {
-    window.location.href = LOGIN_PATH;
-  }
-};
-
 // refresh helper
 const refreshAccessToken = async (
   config: InternalAxiosRequestConfig,
@@ -108,7 +101,6 @@ client.interceptors.response.use(
 
     if (isTokenInvalid) {
       clearAccessToken();
-      handleSessionExpired();
       return Promise.reject(err);
     }
 
@@ -124,7 +116,6 @@ client.interceptors.response.use(
         return client(original);
       } catch {
         clearAccessToken();
-        handleSessionExpired();
         return Promise.reject(err);
       }
     }
