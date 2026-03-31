@@ -32,6 +32,7 @@ properties:
     type: array
     items:
       type: object
+      required: [imageFileId, name, publishDate, publisher]
       properties:
         imageFileId:
           type: string
@@ -50,6 +51,7 @@ properties:
     type: array
     items:
       type: object
+      required: [name, startYear, endYear, description]
       properties:
         name:
           type: string
@@ -67,6 +69,7 @@ properties:
     type: array
     items:
       type: object
+      required: [name, professionRole, imageFileId, date, description]
       properties:
         name:
           type: string
@@ -87,6 +90,7 @@ properties:
     type: array
     items:
       type: object
+      required: [name, url]
       properties:
         name:
           type: string
