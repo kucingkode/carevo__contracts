@@ -13,6 +13,13 @@ get:
         type: string
         format: uuid
         example: 019cda81-ff67-713c-84f6-53ad00c46069
+    - name: parentId
+      in: query
+      required: false
+      schema:
+        type: string
+        format: uuid
+        example: 019cda81-ff67-713c-84f6-53ad00c46069
 
   responses:
     "200":
@@ -80,7 +87,7 @@ post:
         application/json:
           schema:
             type: object
-            required: [createdAt]
+            required: [commentId, createdAt]
             properties:
               commentId:
                 type: string

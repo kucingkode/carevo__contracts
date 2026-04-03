@@ -34,8 +34,8 @@ post:
                 format: uuid
                 example: 019cda81-ff67-713c-84f6-53ad00c46069
 
-    "413":
-      description: Payload too large
+    "415":
+      description: Unsupported media type
       headers:
         x-request-id:
           $ref: "../../../components/headers.yaml#/RequestID"
@@ -46,10 +46,8 @@ post:
               - $ref: "../../../components/schemas/ErrorResponse.yaml"
               - properties:
                   error:
-                    enum: [PAYLOAD_TOO_LARGE]
-                    example: PAYLOAD_TOO_LARGE
-                  message:
-                    example: Payload too large
+                    enum: [UNSUPPORTED_MEDIA_TYPE]
+                    example: UNSUPPORTED_MEDIA_TYPE
 
     "507":
       description: Insufficient storage

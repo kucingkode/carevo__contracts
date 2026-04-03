@@ -24,7 +24,7 @@ post:
         application/json:
           schema:
             type: object
-            required: [createdAt]
+            required: [postId, createdAt]
             properties:
               postId:
                 type: string

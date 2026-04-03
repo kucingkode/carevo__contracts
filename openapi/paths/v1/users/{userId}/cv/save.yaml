@@ -25,6 +25,8 @@ post:
       $ref: "../../../../../components/responses.yaml#/ValidationError"
     "401":
       $ref: "../../../../../components/responses.yaml#/Unauthorized"
+    "403":
+      $ref: "../../../../../components/responses.yaml#/Forbidden"
     "429":
       $ref: "../../../../../components/responses.yaml#/RateLimit"
     "500":
